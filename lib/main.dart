@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/chat.dart';
 import 'package:flutter_application_1/signup.dart';
 
 void main() {
@@ -26,6 +27,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _myFormKey = GlobalKey<FormState>();
+  bool isObs = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(24.0),
         child: Form(
           key: _myFormKey,
           child: Column(
@@ -66,10 +68,20 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   }),
               TextFormField(
-                  decoration: const InputDecoration(
-                    label: Text("Password"),
-                    icon: Icon(Icons.password),
-                    border: OutlineInputBorder(),
+                  obscureText: isObs,
+                  decoration: InputDecoration(
+                    suffix: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            isObs = !isObs;
+                          });
+                        },
+                        icon: isObs
+                            ? const Icon(Icons.visibility)
+                            : const Icon(Icons.visibility_off)),
+                    label: const Text("Password"),
+                    icon: const Icon(Icons.password),
+                    border: const OutlineInputBorder(),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -79,9 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   }),
               MaterialButton(
                 onPressed: () {
-                  if (_myFormKey.currentState!.validate()) {
-                    print("Done!!!");
-                  }
+                  _myFormKey.currentState!.validate();
                 },
                 color: Colors.amber,
                 textColor: Colors.brown,
@@ -102,7 +112,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text("data"),
-                  TextButton(onPressed: () => {}, child: const Text("register"))
+                  TextButton(
+                      onPressed: () => {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const ChatScreen()))
+                          },
+                      child: const Text("register"))
                 ],
               ),
               TextButton(
