@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/messages.dart';
-import 'package:flutter_application_1/search.dart';
+import 'package:flutter_application_1/views/screens/chat_details_page.dart';
+import 'package:flutter_application_1/views/screens/search_pages.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -8,36 +8,6 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        shadowColor: Colors.blue,
-        elevation: 5,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: CircleAvatar(
-                backgroundColor: Colors.grey.shade300,
-                child:
-                    IconButton(onPressed: () {}, icon: const Icon(Icons.edit))),
-          )
-        ],
-        title: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: CircleAvatar(
-                child: Image.network(
-                  "https://lush.com.ph/cdn/shop/articles/sunflower_petal_infusion_1024x1024.jpg?v=1562727399",
-                ),
-              ),
-            ),
-            const Text(
-              "Chat",
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 26),
-            )
-          ],
-        ),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
