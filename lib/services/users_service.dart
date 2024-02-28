@@ -8,13 +8,16 @@ class UserService {
 
   Future<List<UserModel>> getAllUsers() async {
     List<UserModel> usersList = [];
-    final res = await dio.get("$baseUrl/$usersPath");
+    final String path = "$baseUrl/$usersPath";
+    final res = await dio.get(path);
     res.data.forEach((user) => {usersList.add(UserModel.fromJson(user))});
     return usersList;
   }
 
   Future<UserModel> getUserById(int id) async {
-    final res = await dio.get("$baseUrl/$usersPath?id=$id");
-    return UserModel.fromJson(res.data);
+    final String path = "$baseUrl/$usersPath?id=$id";
+    final res = await dio.get(path);
+    UserModel user = UserModel.fromJson(res.data[0]);
+    return user;
   }
 }

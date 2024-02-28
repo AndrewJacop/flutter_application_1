@@ -31,17 +31,8 @@ class _UsersScreenState extends State<UsersScreen> {
     return Scaffold(
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
-          : ListView.separated(
+          : ListView.builder(
               itemCount: userList.length,
-              separatorBuilder: (BuildContext context, int index) {
-                return const Divider(
-                  height: 20,
-                  thickness: 2,
-                  indent: 20,
-                  endIndent: 0,
-                  color: Colors.black54,
-                );
-              },
               itemBuilder: (BuildContext context, int index) {
                 return UserCard(userList[index]);
               },
